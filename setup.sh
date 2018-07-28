@@ -13,7 +13,10 @@ sudo chown -R "$USER":admin /usr/local
 xcode-select --install
 
 # Homebrew install & update
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+if [ ! -f "/usr/local/bin/brew" ];
+then
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
 
 # Make sure we’re using the latest Homebrew.
 brew update
@@ -41,4 +44,8 @@ brew services start php
 #sudo bash -c 'echo "nameserver 127.0.0.1" > /etc/resolver/test'
 
 # NVM Install
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+if [[ ! -d "${HOME}/.nvm" ]];
+then
+  export NVM_DIR="" # Just encase we have this env variable floating around
+  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+fi

@@ -6,7 +6,7 @@ git pull origin master; # Update to lastest version
 
 function doIt() {
   # PowerLevel9k
-  if [ -d "~/.oh-my-zsh" ] && [ ! -d "~/.oh-my-zsh/custom/themes/powerlevel9k" ]; then git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k; fi
+  if [ -d "${HOME}/.oh-my-zsh" ] && [ ! -d "${HOME}/.oh-my-zsh/custom/themes/powerlevel9k" ]; then git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k; fi
 
   # Copy dotfiles
   rsync --exclude ".git/" \
