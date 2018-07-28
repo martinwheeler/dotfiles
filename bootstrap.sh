@@ -5,6 +5,9 @@ cd "$(dirname "${BASH_SOURCE}")";
 git pull origin master;
 
 function doIt() {
+  # PowerLevel9k
+  if [ -d "~/.oh-my-zsh" && ! -d "~/.oh-my-zsh/custom/themes/powerlevel9k" ]; then git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k; fi
+
   # Copy dotfiles
   rsync --exclude ".git/" \
     --exclude ".DS_Store" \
@@ -12,16 +15,11 @@ function doIt() {
     --exclude "brew.sh" \
     --exclude "setup.sh" \
     --exclude ".macos" \
-    --exclude ".macos" \
+    --exclude "zsh.sh" \
     --exclude "README.md" \
     --exclude "my-terminal.svg" \
     --exclude "LICENSE-MIT.txt" \
     -avh --no-perms . ~;
-
-  source setup.sh && \
-  source ~/.zshrc && \
-  source brew.sh && \
-  source .macos;
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then

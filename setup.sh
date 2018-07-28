@@ -40,9 +40,5 @@ brew services start php
 #sudo mkdir /etc/resolver
 #sudo bash -c 'echo "nameserver 127.0.0.1" > /etc/resolver/test'
 
-# Oh-My-Zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" && \
-# PowerLevel9k
-git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k && \
 # NVM Install
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
