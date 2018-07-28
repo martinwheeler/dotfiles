@@ -201,5 +201,5 @@ function tre() {
 # Updates your current checked out branch with the provided branch name using rebase.
 # e.g. update master
 function update(){
-  git checkout "$1" && git pull && git checkout - && git rebase "$1"
+  git checkout "$1" && git fetch && git rebase FETCH_HEAD && git checkout - && git rebase "$1"
 }

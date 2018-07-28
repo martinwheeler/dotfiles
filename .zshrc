@@ -41,10 +41,10 @@ export LANG=en_US.UTF-8
 #|------------------------------------------------------------|#
 #| Extras                                                     |#
 #|------------------------------------------------------------|#
-# source $HOME/.exports
-# source $HOME/.aliases
+source $HOME/.exports
+source $HOME/.aliases
 source $HOME/.zsh_functions
-# source $HOME/.functions
+source $HOME/.functions
 
 source $HOME/z.sh
 

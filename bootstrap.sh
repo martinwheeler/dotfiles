@@ -18,8 +18,8 @@ function doIt() {
     --exclude "LICENSE-MIT.txt" \
     -avh --no-perms . ~;
 
-  source ~/.zshrc && \
   source setup.sh && \
+  source ~/.zshrc && \
   source brew.sh && \
   source .macos;
 }
