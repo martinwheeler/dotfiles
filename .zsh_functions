@@ -1,0 +1,72 @@
+function update(){
+  git checkout "$1" && git pull && git checkout - && git rebase "$1"
+}
+
+function build_pack () {
+	rm *.tgz
+  package_name="$(node -pe "require('./package.json').name")" && \
+  echo "Building & packing \"$package_name\"" && \
+  yarn build && package_tar=$(npm pack) && \
+  echo "Packed!" && \
+  echo "link_pack $package_name $(pwd)/$package_tar" | pbcopy && \
+	echo "Setup copied to clipboard!"
+}
+
+function link_pack () {
+  package_name="${1:?required}"
+  src_tgz="${2:?required}"
+  package_dir="node_modules/$package_name"
+  under_package_dir="$package_dir/package"
+
+  echo "Linking a packed tar.: $(basename "$src_tgz")"
+  echo ""
+  echo "  $(basename "$src_tgz")  ⟹   $package_dir"
+  echo ""
+  rm -rf "$package_dir" && \
+  mkdir "$package_dir" && \
+  tar --strip=1 -C "$package_dir" -xzf "$src_tgz" && \
+  echo "...Linked! Bai!"
+}
+
+function fix_dnsmasq () {
+	mkdir "$(brew --prefix)/etc"
+	echo "Pointing .rex to 127.0.0.1 in dnsmasq config" && \
+	echo 'address=/.rex/127.0.0.1' > $(brew --prefix)/etc/dnsmasq.conf && \
+	echo "Mapping resolver 'rex' to 127.0.0.1" && \
+	sudo bash -c 'echo "nameserver 127.0.0.1" > /etc/resolver/rex' && \
+	sudo brew services restart dnsmasq
+}
+
+transfer() { if [ $# -eq 0 ]; then echo -e "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi
+tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; }
+
+docker_connect() {
+	container_id="${1:?required}"
+	docker exec -it "$container_id" /bin/bash
+}
+
+svgo_viewbox() {
+	svgo "${1:?required}" --disable=removeViewBox
+}
+
+svgor() {
+	file_name="${1:?required}"
+	svgo_output="$(svgo_viewbox "$file_name")"
+	echo "$svgo_output"
+	echo "$svgo_output" | grep '0%' &> /dev/null
+	if [ $? != 0 ]; then
+		svgor "$file_name"
+	fi
+}
+
+disable_hooks () {
+	mv .git/hooks/post-merge .git/hooks/disable-merge
+	mv .git/hooks/post-checkout .git/hooks/disable-checkout
+	mv .git/hooks/post-fetch .git/hooks/disable-fetch
+}
+
+enable_hooks () {
+	mv .git/hooks/disable-merge .git/hooks/post-merge
+	mv .git/hooks/disable-checkout .git/hooks/post-checkout
+	mv .git/hooks/disable-fetch .git/hooks/post-fetch
+}
