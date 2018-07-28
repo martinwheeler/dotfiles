@@ -2,7 +2,7 @@
 
 cd "$(dirname "${BASH_SOURCE}")";
 
-# git pull origin master;
+git pull origin master; # Update to lastest version
 
 function doIt() {
   # PowerLevel9k
