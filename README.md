@@ -1,4 +1,4 @@
-# Martin's dotfiles
+# martinwheeler's dotfiles
 
 ![Screenshot of my shell prompt](my-terminal.svg)
 
@@ -8,14 +8,15 @@
 
 ## Setup Steps
 
-First clone the repoistory to wherever you want. Secondly run the scripts in top down order. If you don't want Oh-My-Zsh then skip the first script and run the others.
+First clone the repoistory to wherever you want. Secondly run the scripts in top down order. If you don't want Oh-My-Zsh then skip the first script and only run the `bootstrap.sh` file.
 
 ```bash
 git clone https://github.com/martinwheeler/dotfiles.git && cd dotfiles
+```
 
-source zsh.sh
-source bootstrap.sh
-source setup.sh
+```bash
+./zsh.sh
+./bootstrap.sh
 ```
 
 Some of the functionality of these dotfiles depends on formulae installed by `brew.sh`. If you don’t plan to run `brew.sh`, you should look carefully through the script and manually install any particularly important ones. A good example is Bash/Git completion: the dotfiles use a special version from Homebrew.

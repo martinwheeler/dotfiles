@@ -6,7 +6,10 @@ git pull origin master; # Update to lastest version
 
 function doIt() {
   # PowerLevel9k
-  if [ -d "${HOME}/.oh-my-zsh" ] && [ ! -d "${HOME}/.oh-my-zsh/custom/themes/powerlevel9k" ]; then git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k; fi
+  if [ -d "${HOME}/.oh-my-zsh" ] && [ ! -d "${HOME}/.oh-my-zsh/custom/themes/powerlevel9k" ];
+    then
+      git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k;
+    fi
 
   # Copy dotfiles
   rsync --exclude ".git/" \
@@ -20,9 +23,13 @@ function doIt() {
     --exclude "my-terminal.svg" \
     --exclude "LICENSE-MIT.txt" \
     -avh --no-perms . ~;
+
+  source ~/.zshrc && \
+  source setup.sh;
 }
 
-if [ "$1" == "--force" -o "$1" == "-f" ]; then
+if [ "$1" == "--force" -o "$1" == "-f" ];
+then
 	doIt;
 else
 	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
