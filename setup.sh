@@ -18,7 +18,7 @@ xcode-select --install
 
 # Homebrew install & update
 if [ ! -f "/usr/local/bin/brew" ]; then
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 # Make sure we’re using the latest Homebrew.
@@ -38,3 +38,8 @@ if [[ ! -d "${HOME}/.nvm" ]]; then
   export NVM_DIR="" # Just encase we have this env variable floating around
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 fi
+
+git clone https://github.com/jimeh/tmuxifier.git ~/.tmuxifier
+curl -sS https://starship.rs/install.sh | sh
+
+source ./brew.sh

@@ -16,14 +16,6 @@ then
   export PATH="~/.composer/vendor/bin:$PATH"
 fi
 
-# PHP
-# export PATH="$(brew --prefix php)/bin:$PATH"
-
-# Android Studio Dev
-# export USE_CCACHE=1
-# export CCACHE_COMPRESS=1
-# export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx4G"
-
 #|------------------------------------------------------------|#
 #| Extras                                                     |#
 #|------------------------------------------------------------|#
@@ -33,7 +25,7 @@ source $HOME/.zsh_functions
 source $HOME/.functions
 
 # Z-Jump https://github.com/rupa/z
-source "$HOME/z/z.sh"
+source "$HOME/z.sh"
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh

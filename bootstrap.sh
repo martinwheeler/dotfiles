@@ -11,6 +11,7 @@ function doIt() {
   #     git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k;
   #     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
   #   fi
+  source setup.sh
 
   # Copy dotfiles
   rsync --exclude ".git/" \
@@ -25,8 +26,7 @@ function doIt() {
     --exclude "LICENSE-MIT.txt" \
     -avh --no-perms . ~
 
-  source ~/.zshrc &&
-    source setup.sh
+  source ~/.zshrc
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
