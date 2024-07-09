@@ -27,8 +27,6 @@ source $HOME/.functions
 # Z-Jump https://github.com/rupa/z
 source "$HOME/z.sh"
 
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $(brew --prefix)/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -36,3 +34,8 @@ export NVM_DIR="$HOME/.nvm"
 
 eval "$(tmuxifier init -)"
 eval "$(starship init zsh)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix)/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
