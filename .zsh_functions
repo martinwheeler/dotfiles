@@ -28,14 +28,14 @@ function link_pack () {
   echo "...Linked! Bai!"
 }
 
-function fix_dnsmasq () {
-	mkdir "$(brew --prefix)/etc"
-	echo "Pointing .rex to 127.0.0.1 in dnsmasq config" && \
-	echo 'address=/.rex/127.0.0.1' > $(brew --prefix)/etc/dnsmasq.conf && \
-	echo "Mapping resolver 'rex' to 127.0.0.1" && \
-	sudo bash -c 'echo "nameserver 127.0.0.1" > /etc/resolver/rex' && \
-	sudo brew services restart dnsmasq
-}
+# function fix_dnsmasq () {
+# 	mkdir "$(brew --prefix)/etc"
+# 	echo "Pointing .rex to 127.0.0.1 in dnsmasq config" && \
+# 	echo 'address=/.rex/127.0.0.1' > $(brew --prefix)/etc/dnsmasq.conf && \
+# 	echo "Mapping resolver 'rex' to 127.0.0.1" && \
+# 	sudo bash -c 'echo "nameserver 127.0.0.1" > /etc/resolver/rex' && \
+# 	sudo brew services restart dnsmasq
+# }
 
 transfer() { if [ $# -eq 0 ]; then echo -e "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi
 tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; }

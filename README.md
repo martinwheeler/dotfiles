@@ -15,7 +15,6 @@ git clone https://github.com/martinwheeler/dotfiles.git && cd dotfiles
 ```
 
 ```bash
-./zsh.sh
 ./bootstrap.sh
 ```
 
