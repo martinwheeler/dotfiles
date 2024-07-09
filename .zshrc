@@ -27,14 +27,13 @@ source $HOME/.functions
 # Z-Jump https://github.com/rupa/z
 source "$HOME/z.sh"
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(tmuxifier init -)"
+eval "$(starship init zsh)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-eval "$(tmuxifier init -)"
-eval "$(starship init zsh)"
-eval "$(/opt/homebrew/bin/brew shellenv)"
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
